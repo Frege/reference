@@ -1,4 +1,9 @@
-My Awesome Book
-=======
 
-This file file serves as your book's preface, a great place to describe your book's content and ideas.
+# Frege Quick Reference
+
+[Frege](https://github.com/Frege/frege) is an implementation of Haskell 2010 for the Java VIrtual Machine.
+
+[Haskell](http://haskell.org) is a pure functional, staticaly typed programming language with non-strict evaluation.
+
+
+
