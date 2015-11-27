@@ -5,6 +5,7 @@ link:https://github.com/Frege/frege[Frege] is an implementation of Haskell 2010 
 
 link:http://haskell.org[Haskell] is a pure functional, statically typed programming language with non-strict evaluation. It is specified in detail in link:https://haskell.org/definition/haskell2010.pdf[The Haskell 2010 Report].
 
+In the following quick reference, things are not explained in depth. Instead, the motto is facts, facts, facts. Often just examples are being given.
 
 
 
