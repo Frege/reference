@@ -1,4 +1,12 @@
 # Lexical syntax
 
+## Source code
 
+Source code is a sequence of Unicode code points. It is recommended to keep source code in UTF-8 encoded text files. Compiler supports different encodings through the `-encoding` command line option.
 
+.Example
+ # use default encoding of the java platform
+ java -jar fregec.jar -encoding DEFAULT your.fr
+ # use russian encoding (not tested)
+ java -jar fregec.jar -encoding KOI8_R your.fr
+ 
