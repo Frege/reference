@@ -1,4 +1,5 @@
 = Summary
 
 . link:README.adoc[Introduction]
+. link:lexical.adoc[Lexical Syntax]
 
