@@ -164,7 +164,7 @@ For the purpose of Frege, all letters that are not uppercase letters are counted
 
 Are used to name namespaces, types, type classes and data constructors. Also, the last component of a module name must lexically be a constructor name.
 
-Such a starts with an uppercase letter, which may be followed by by an arbitrary number of letters, digits, apostrophes and underscores.
+Such a name starts with an uppercase letter, which may be followed by by an arbitrary number of letters, digits, apostrophes and underscores.
 
 Namespaces can have the same name as types or type classes. Data constructors can have the same name as namespaces, types or type classes.
 
@@ -194,11 +194,19 @@ Namespace and type name must be given as qualifiers, that is, they must be immed
   
 ### Module names
 
-A sequence of names, separated by dots. The last part must be a construtor name.
+A sequence of names, separated by dots. The last part must be a construtor name. Since will be the fully qualified name of the Java class that is compiled for this module, it is expected that this folloows Java customs.
+
+  module org.desperate.programmers.Baz
+
+If the first component of a multi-component name starts with an uppercase letter, `frege.` will be prepended to the name and the uppercase letter will be lower-cased.
+
+   Data.List      -- same as frege.data.List
+
+This is to make Haskell programmers feel home and to save typing.
 
 ### Native type names
 
-A fully qualified name of a class or an interface. If it contains characters  that are not allowed in Frege (like `$`) or words that are keywords, it can be given as a string literal.
+A fully qualified name of some existing class or interface. If it contains characters  that are not allowed in Frege (like `$`) or words that are keywords, it can be given as a string literal.
 
 [[layout]]
 ## Layout 
