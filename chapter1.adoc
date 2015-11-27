@@ -9,4 +9,22 @@ Source code is a sequence of Unicode code points. It is recommended to keep sour
  java -jar fregec.jar -encoding DEFAULT your.fr
  # use russian encoding (not tested)
  java -jar fregec.jar -encoding KOI8_R your.fr
- 
+
+## Tokens
+
+### Literals
+
+.Integer Literals
+  17 0x11 021       -- int value 17 in decimal, hexadecimal and octal
+  5_483_438         -- trailing groups of 3 digits can be separated
+  123L 217l         -- long values (like in java)
+  5467n 7654N       -- big integer literal
+
+.Floating Point Literals
+  1.234e-17 1d 0D   -- double literals 
+  0.2F 2.0f         -- float literal
+
+Either the fractional part or the exponent may be omitted, but not both.
+
+## Layout 
+[[layout]]
