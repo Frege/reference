@@ -194,7 +194,9 @@ Namespace and type name must be given as qualifiers, that is, they must be immed
   
 ### Module names
 
-A sequence of names, separated by dots. The last part must be a construtor name. Since will be the fully qualified name of the Java class that is compiled for this module, it is expected that this folloows Java customs.
+A sequence of names, separated by dots. 
+The last part must be a construtor name. 
+Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs.
 
   module org.desperate.programmers.Baz
 
@@ -210,3 +212,52 @@ A fully qualified name of some existing class or interface. If it contains chara
 
 [[layout]]
 ## Layout 
+
+Like in Haskell, Frege code can be written using blocks delimitted by curly braces, where subsequent definitions are separated by semicolons.
+
+In fact, this is the language the parser understands.
+The so-called layout feature allows omission of those braces and semicolons, by inferring their positions based on the indentation of the program text and inserting them as needed before parsing.
+
+Informally stated, the braces and semicolons are inserted as follows. 
+The layout (or ”offside”) rule takes effect whenever the open brace is omitted after the keyword `where`, `let`, `do`, or `of`.
+
+When this happens, the indentation of the next lexeme (whether or not on a new line) is remembered and the omitted open brace is inserted 
+(the whitespace preceding the lexeme may include comments). 
+
+For each subsequent line, 
+if it contains only whitespace or is indented more, 
+then the previous item is continued (nothing is inserted);
+if it is indented the same amount, 
+then a new item begins (a semicolon is inserted); 
+and if it is indented less, then the layout list ends (a close brace is inserted).
+
+The layout rule matches only those open braces that it has inserted; 
+an explicit open brace must be matched by an explicit close brace. 
+Within these explicit open braces, no layout processing is performed for constructs outside the braces, even if a line is indented to the left of an earlier implicit open brace.
+
+.Layout Examples 1
+[source, haskell]
+----
+module Foo where
+
+bar = 1
+baz = bar + x
+  where 
+     x = y+2
+     y = bar*5
+----
+
+becomes
+
+[source, haskell]
+----
+module Foo where
+
+{bar = 1
+;baz = bar + x
+    where 
+      {x = y+2
+      ;y = bar + 5
+      }
+}
+----
