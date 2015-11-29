@@ -111,7 +111,7 @@ Withing regular expression literals, escape sequences follow the regular express
 
 The following characters are separators and have certain syntactic meanings
 
-  {}[](),;
+  { } [ ] ( ) , ;
   
 ### Keywords
 
@@ -191,6 +191,7 @@ Namespace and type name must be given as qualifiers, that is, they must be immed
   Foo . bar         -- not a qualified name
   Foo.bar           -- a qualified name
   Foo. bar          -- the same
+  Mod.Typ.x         -- fully qualified name
   
 ### Module names
 
