@@ -58,7 +58,9 @@ Documentation comments may appear
 * immediately after the constructor declaration
 * after a field declaration
 
-Multiple adjacent documentation comments are joined with a paragraph break inbetween. The documentation text uses an easy <<docmarkup,markup language>>. It can be retrieved from compiled class files.
+Multiple adjacent documentation comments are joined with a paragraph break inbetween. The documentation text extracted from a (sequence of) documentationn comments is attached to the documented item. It can be reconstructed from compiled class files later.
+
+You write documentation with an easy <<docmarkup,markup language>>.
 
 ### Literals
 
@@ -272,3 +274,7 @@ module Foo where
       }
 }
 ----
+
+[[docmarkuo]]
+## Markup Used in Documentation Comments
+
