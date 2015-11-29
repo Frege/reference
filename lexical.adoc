@@ -1,4 +1,4 @@
-# Lexical syntax
+# Lexemes
 
 ## Source code
 
@@ -11,6 +11,8 @@ Source code is a sequence of Unicode code points. It is recommended to keep sour
  java -jar fregec.jar -encoding KOI8_R your.fr
 
 ## Tokens
+
+The lexical analyzer recognizes lexemes, or tokens, as described below. It turns a sequence of characters into a sequence of tokens.
 
 ### Whitespace
 
@@ -51,7 +53,7 @@ Block comments do nest and can extend over multiple lines. They can be used to s
 
 Documentation comments may appear
 
-* before a (non local) function or variable declaration
+* before a (non local) declaration of a function, variable, type class, data type, nstance or type class
 * immediately before a constructor is introduced
 * immediately after the constructor declaration
 * after a field declaration
