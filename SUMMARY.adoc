@@ -2,5 +2,5 @@
 
 . link:README.adoc[Introduction]
 . link:lexical.adoc[Lexical Matters]
-. link:syntax.adoc[Syntax]
+. link:syntax.adoc[Expressions]
 
