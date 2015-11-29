@@ -1,4 +1,4 @@
-# Lexical Syntax
+# Lexical Matters
 
 ## Source code
 
