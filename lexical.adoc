@@ -1,4 +1,4 @@
-# Lexemes
+# Lexical Syntax
 
 ## Source code
 
@@ -97,13 +97,21 @@ All escape characters/sequences allowed in Java are also allowed in Frege. Chara
 Strings can contain any unicode characters. However, code points from the higher plane are encoded as a surrogate pairs.
 
 .Regular Expression Literals
-  ´^foo\\´          -- in Java "^foo\\\\", means
-                    -- "foo" at the start followed by backslash
-  '(foo|bar)'       -- works with upright quotes
-                    -- when longer than 1 char
+  ´^foo\\´          -- "foo" at the start followed by backslash
+  '(foo|bar)'       -- upright quotes ok when more than 1 char
   '(?:)x'           -- trick: same as ´x´
 
-Regular expressions can be given as literals. They are checked for validity at compile time. No backslash dupications needed, as is the case when one specifies them as string in Java.
+Regular expressions can be given as literals. They are checked for validity at compile time. No backslash duplications is needed, as is the case when one specifies them as string in Java.
+
+The first example above corresponds to the following Java code:
+
+[source,java]
+----
+final public static java.util.regex.Pattern p = 
+    java.util.regex.Pattern.compile("^foo\\\\");
+----
+
+where `p` is some fresh name the compiler uses internally.
 
 A quoted construct in upright quotes is interpreted as regular expression literal when it can't possibly be a character. This is for the convenience of those that don't have acute accent marks on their keyboard.
 
