@@ -1,6 +1,6 @@
 = Summary
 
 . link:README.adoc[Introduction]
-. link:lexical.adoc[Lexemes]
+. link:lexical.adoc[Lexical Matters]
 . link:syntax.adoc[Syntax]
 
