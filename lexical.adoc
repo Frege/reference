@@ -60,7 +60,7 @@ Documentation comments may appear
 
 Multiple adjacent documentation comments are joined with a paragraph break inbetween. The documentation text extracted from a (sequence of) documentationn comments is attached to the documented item. It can be reconstructed from compiled class files later.
 
-You write documentation with an easy <<docmarkup,markup language>>.
+You write documentation with an easy <<markup>> language.
 
 ### Literals
 
@@ -275,6 +275,45 @@ module Foo where
 }
 ----
 
-[[docmarkuo]]
+[[markup]]
 ## Markup Used in Documentation Comments
+
+The following markup is supported by the documentation tool and the eclipse plugin:
+
+    *bold*  _italic_ @monospaced@ 'reference'
+
+A *reference* is the (possibly qualified) name of a frege type, function, etc. 
+This should turn to a hyperlink when processed. The *reference* will be resolved in the context of the module that contains the comment. What this means is that _reference_ must be a name that would be valid
+on the toplevel of the module. If the name resolution fails, the text enclosed in the apostrophes will be shown in red color.
+
+But sometimes one needs to reference some item from another module that is not imported. For this, the following syntax is possible:
+
+    'some.other.Package#something'
+
+The validity of such a reference can not be checked, of course.
+
+Finally, if one needs a generic link, it can be written like thus:
+
+    'http://projecteuler.net/index.php?section=problems&id=12 Euler probelm 12'
+
+The part before the first space character is taken as URL, the rest is the text that will be shown.
+
+An empty line serves as paragraph break.
+Special paragraphs are
+
+[source]
+----
+    #   Header 1
+    ##  Header 2
+    ### Header 3
+    > preformatted text (i.e. code examples)
+    > each line must start with ">"
+
+    - unordered list item
+    1. ordered list item
+    (2) ordered list item
+    [item] list item tagged with "item"
+----
+
+Paragraphs do not nest.
 
