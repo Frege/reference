@@ -53,14 +53,20 @@ Block comments do nest and can extend over multiple lines. They can be used to s
 
 Documentation comments may appear
 
-* before a (non local) declaration of a function, variable, type class, data type, nstance or type class
+* before a (non local) declaration of a function, variable, type class, data type, instance or type class
 * immediately before a constructor is introduced
 * immediately after the constructor declaration
 * after a field declaration
 
-Multiple adjacent documentation comments are joined with a paragraph break inbetween. The documentation text extracted from a (sequence of) documentationn comments is attached to the documented item. It can be reconstructed from compiled class files later.
+Multiple adjacent documentation comments are joined with a paragraph break inbetween. The documentation text extracted from a (sequence of) documentationn comments is attached to the documented item. 
 
 You write documentation with an easy <<markup>> language.
+
+You should write documentation comments because
+
+* a module documentation can be generated from your compiled module
+* the eclipse plugin can show the documentation of your functions on mouse hover and in code completion suggestions when your module is imported.
+* the Hoogle database for your module can make use of documentation text.
 
 ### Literals
 
@@ -149,7 +155,7 @@ The following are keywords only when the next token is the keyword `native`
 
 ### Operators
 
-Any sequence of characters that doesn't contain separators, quotes, apostrophes, acute/grave accent marks, letters, digits or whitespace is a lexical operator, unless it is a keyword.
+Any sequence of characters that doesn't contain separators, quotes, apostrophes, acute/grave accent marks, letters, digits or whitespace is a lexical operator, unless it is a keyword. Operators are used to form infix expressions.
 
 When recognizing operators, the lexer considers the longest sequence of operator characters available. Symbolic keywords are not recognized when they appear as subsequence of an operator.
 
@@ -158,6 +164,13 @@ When recognizing operators, the lexer considers the longest sequence of operator
   
 
 This provides enormous symbolic freedom for user defined operators.
+
+In addition, a variable or data constructor can be turned into an operator by enclosing its name in acute accent marks:
+
+[source]
+----
+f `fmap` xs         -- the fmap function used as operator
+----
 
 ### Variable Names
 
@@ -176,7 +189,7 @@ For the purpose of Frege, all letters that are not uppercase letters are counted
 
 Are used to name namespaces, types, type classes and data constructors. Also, the last component of a module name must lexically be a constructor name.
 
-Such a name starts with an uppercase letter, which may be followed by by an arbitrary number of letters, digits, apostrophes and underscores.
+Such a name starts with an uppercase letter, which may be followed by an arbitrary number of letters, digits, apostrophes and underscores.
 
 Namespaces can have the same name as types or type classes. Data constructors can have the same name as namespaces, types or type classes.
 
@@ -188,7 +201,7 @@ Namespaces can have the same name as types or type classes. Data constructors ca
   data Foo = Foo
 ----
 
-Editors for Frege should highlight or colour constructor names in such a way that theay are easily distinguished.
+Editors for Frege should highlight or colour constructor names in such a way that they are easily distinguished.
 
 ### Qualifier
 
@@ -197,13 +210,13 @@ This is used to form qualified names.
 
 ### Qualified Names
 
-A name can be qualified by a namespace, a type name or by a namespace and a type name.
+A data constructor, variable or operator can be qualified by a namespace, a type name or by a namespace and a type name.
 Namespace and type name must be given as qualifiers, that is, they must be immediately followed by a dot.
 
   Foo . bar         -- not a qualified name
   Foo.bar           -- a qualified name
   Foo. bar          -- the same
-  Mod.Typ.x         -- fully qualified name
+  Mod.Typ.###       -- fully qualified operator
   
 ### Module names
 
@@ -276,7 +289,7 @@ module Foo where
 ----
 
 [[markup]]
-## Markup Used in Documentation Comments
+## Documentation Comment Markup
 
 The following markup is supported by the documentation tool and the eclipse plugin:
 
