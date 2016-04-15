@@ -22,11 +22,14 @@ A type expression with kind `k`~1~ `-> k`~2~ can be applied to another type expr
 We can now derive the kind of type expression `Maybe`. Surely it holds that 
 
 ----
-Int :: *
-Maybe Int :: *
+  Int :: *
+  Maybe Int :: *
 ----
 
-since we can imagine values like `5 :: Int` or `Just 7 :: Maybe Int`.
+since we can imagine values 
+
+
+like `5 :: Int` or `Just 7 :: Maybe Int`.
 
 
 
