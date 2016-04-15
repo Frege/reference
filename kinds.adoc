@@ -1,5 +1,7 @@
 = Kinds
 
+:icons: font
+
 == What are Kinds?
 
 Kinds are the _types of types_ or better _type expressions_. We need them because not every type expression denotes a set of possible values. For example:
@@ -29,7 +31,7 @@ We can now derive the kind of type expression `Maybe`. Surely it holds that
 
 since we can imagine values like
 
-[code,haskell]
+[source,haskell]
 ----
 5 :: Int
 Just 7 :: Maybe Int
@@ -37,14 +39,78 @@ Just 7 :: Maybe Int
 
 that inhabit those type. From this it follows that `Maybe` is something that can be applied to a type expression of kind `\*` and the resulting type expression also has kind `*`. Therefore:
 
-[code,haskell]
+[source,haskell]
 ----
 Maybe :: * -> *
 ----
 
-[note]
-Note the spaces between the double colon, the stars and the arrows! Always include them when you write kinds, because input like `::*->*` would be interpreted as <<lexical.adoc#Operators,operators>>. 
+NOTE: Note the spaces between the double colon, the stars and the arrow! Always include them when you write kinds, because input like `::*->*` would be interpreted as <<lexical.adoc#_operators,operator>>. 
 
+## Kind Annotations
+
+The compiler tries to infer the kind of each type expression occurring in the program, so normally a programmer needs not be concerned with kinds.
+
+There may be cases where this doesn't work automatically and kind inference leads to error messages. The remedy is to write some *kind annotations*.
+
+Kind annotations are currently allowed on variables only. Here is an example:
+
+.Example with kind annotations
+[source,haskell]
+----
+data Foo (f :: * -> *) a b = X (f a) (f b)
+
+foo :: Foo Maybe Int Double
+foo = X (Just 1) Nothing
+
+
+bar :: Foo [] Int Double
+bar = X [] [5.23, 8e-7]
+----
+
+It is recommended to annotate type variables where they are introduced:
+
+1. in the left hand side of a `type`, `data` or `newtype` definition
+2. in the list of type variables following `forall`
+
+## Annotation of Java type variable bounds
+
+Frequently, _bounds_ are specified for type variables in Java generic types.
+
+.Example:
+[source,java]
+----
+class Enum<E extends Enum<E>> { ... }
+----
+
+It'll cause compiler errors when we define this in Frege as
+
+.Wrong:
+[source,haskell]
+----
+data Enum e = pure native java.lang.Enum{e} where { ... }
+----
+
+Instead, we need to annotate the type variable `e` with its correct bound:
+
+.Correct:
+[source,haskell]
+----
+data Enum (e::Enum e) = pure native java.lang.Enum{e} where { ... }
+----
+
+When the Java type bound takes the form:
+
+[source,java]
+----
+extends ClassType & Interface1 & Interface2 & Interface3
+----
+  
+we write this as tuple in Frege:
+
+[source,haskell]
+----
+(Classtype, Interface1, Interface2, Interface3)
+----
 
 
 
