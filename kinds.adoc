@@ -43,7 +43,7 @@ Maybe :: * -> *
 ----
 
 [note]
-Note the spaces between the double colon, the stars and the arrows! 
+Note the spaces between the double colon, the stars and the arrows! Always include them when you write kinds, because input like `::*->*` would be interpreted as <<lexical.adoc#Operators,operators>>. 
 
 
 
