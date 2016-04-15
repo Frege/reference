@@ -18,7 +18,10 @@ simpleTyvar ::= VARID
 
 /* type variable with kind */
 tyvar ::= simpleTyvar
-        | '(' simpleTyvar '::' (kind | typeApp) ')'
+        | '(' simpleTyvar '::' kind ')'
+        | '(' simpleTyvar '≤' typeApp ')'   /* T extends C<...> */
+        | '('  '≤' typeApp ')'              /* ? extends C<...> */
+        | '('  '≥' typeApp ')'              /* ? super   C<...> */
 
 /* type kind */
 simplekind ::= '*' 
