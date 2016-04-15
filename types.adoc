@@ -2,4 +2,101 @@
 
 :icons: font
 
-NOTE: this doesn't work.
+== Syntax of Types
+
+[source,java]
+----
+/* type constructor */
+tycon ::= QUALIFIER? CONID 
+        | '[' ']'            /* list type constructor */
+        | '(' ')'            /* unit type constructor */
+        | '(' ','+ ')'       /* tuple type constructors */
+        | '(' '->' ')'       /* function type constructor */
+
+/* simple type variable */
+simpleTyvar ::= VARID
+
+/* type variable with kind */
+tyvar ::= simpleTyvar
+        | '(' simpleTyvar '::' (kind | typeApp) ')'
+
+/* type kind */
+simplekind ::= '*' 
+        | '(' kind ')'
+
+kind ::= simplekind
+        | simplekind '->' kind
+----
+
+For a discussion of kinds, <<kinds.adoc#_kinds,look here>>.
+
+Type variables normally scope over a single type expression, where
+two type variables with the same name stand for the same type.
+
+In `data`, `newtype` or `type` definitions, type variables introduced left from the equals sign scope over the whole right hand side.
+
+In type `class` definitions, there is one type variable that stands 
+for the instantiated type and scopes over all definitions in
+the where block of the class definition.
+
+[source,java]
+----
+/* type term */
+typeTerm ::= tyvar 
+          | tycon 
+          | '(' quantifiedType ')'     /* type in parentheses */
+          | '(' type (',' type)+ ')'   /* tuple type */
+          | '[' type ']'               /* list type */
+
+/* type application */
+typeApp ::= typeTerm+
+
+/* type */
+type ::= typeApp ( '->' type)         /* function type */
+constrainedType ::= constraints '=>' type 
+constraint ::= QUALIFIER? CONID typeApp
+constraints ::= constraint | '(' constraint (',' constraint)* ')'
+quantifiedType ::= ('forall' | '∀') tyvar+ '.' (constrainedType | type)
+----
+
+.Examples
+ String             -- the String type
+ Int                -- the Int type
+ M.Foo              -- the type Foo from name space M
+ t                  -- a type variable, stands for a type
+ (t :: * -> *)      -- a type variable with kind * -> *
+ ()                 -- the unit type
+ [Int]              -- list of integers
+ [] Int             -- the same
+ (a,a,b)            -- a 3 tuple where the first 2 elements have the same type
+ (Int, [String])    -- a tuple, holding an Int and a list of Strings
+ [(Int, [String])]  -- a list of such tuples
+ Int -> Int         -- a function from Int to Int
+ (a->b) -> [a] -> [b] -- a function that takes another function
+                      -- from a to b and a list of a and produces
+                      -- a list of b
+ forall a b . (a->b) -> [a] -> [b]
+                      -- same as before, but explicitly quantified
+ (forall t.[t]->[t]) -> [a] -> [b] -> ([a], [b])
+ 
+Types can mostly be written without explicit quantification. In this case we say the type is implicitly quantified. A `forall` with all free type variables is supplied by the compiler.
+
+However, for higher rank types we need an explicit `forall`. The last type in the examples above shows this. We have here a function that takes a higher order function that works on all lists, regardless of the element type. For example, `reverse` is such a function. This makes it possible for our higher rank function to apply the argument function to two lists of different types. 
+
+
+== Standard Types
+
+|===
+| Frege type | Java type
+
+| Bool | boolean 
+| Int | int
+| Long | long
+| Integer | java.math.BigInteger
+| Float | float
+| Double | double
+| Char | char
+| String | java.lang.String
+| Regex | java.util.regex.Pattern
+
+|===
