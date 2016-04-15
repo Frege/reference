@@ -1,2 +1,6 @@
 = Kinds
 
+Kinds are the _types of types_ or better _type expressions_ and are needed because not every type expression is an actual type that could be inhabited by some values. For example:
+
+
+
