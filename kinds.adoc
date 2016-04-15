@@ -1,5 +1,7 @@
 = Kinds
 
+== What are Kinds?
+
 Kinds are the _types of types_ or better _type expressions_. We need them because not every type expression denotes a set of possible values. For example:
 
 ----
@@ -24,7 +26,9 @@ Int :: *
 Maybe Int :: *
 ----
 
-since we can imagine values like `5 :: Int` or `Just 7 :: Maybe Int`
+since we can imagine values like `5 :: Int` or `Just 7 :: Maybe Int`.
+
+
 
 
 
