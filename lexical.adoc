@@ -2,13 +2,22 @@
 
 ## Source code
 
-Source code is a sequence of Unicode code points. It is recommended to keep source code in UTF-8 encoded text files. Compiler supports different encodings through the `-encoding` command line option.
+Source code is a sequence of Unicode code points. It is *strongly recommended* to keep source code in UTF-8 encoded text files. The compiler supports different encodings through the `-encoding` command line option, though.
 
 .Example
- # use default encoding of the java platform
+----
+ # use default encoding of the java platform (dangerous!)
+ # It is likely that your sorce code will not compile on different platforms,
+ # since you probably use some obscure proprietary encoding.
+ # (Windows users, I'm looking at you!)
  java -jar fregec.jar -encoding DEFAULT your.fr
- # use russian encoding (not tested)
+ 
+ # use russian encoding (not tested, for lack of keyboard)
  java -jar fregec.jar -encoding KOI8_R your.fr
+ 
+ # use UTF-8 (the only sensible decision)
+ java -jar fregec.jar  your.fr
+----
 
 ## Tokens
 
@@ -41,7 +50,7 @@ Block comments do nest and can extend over multiple lines. They can be used to s
   v{-separates!-}10     
 
 .Documentation Comment
-[source]
+[source,haskell]
 ----
   {--
     First paragraph.
@@ -232,9 +241,15 @@ If the first component of a multi-component name starts with an uppercase letter
 
 This is to make Haskell programmers feel home and to save typing.
 
-### Native type names
+### Native names
 
-A fully qualified name of some existing class or interface. If it contains characters  that are not allowed in Frege (like `$`) or words that are keywords, it can be given as a string literal.
+A fully qualified name of some existing static method, class or interface. If this contains characters  that are not allowed in Frege names (like `$`) or words that are keywords, it can be given as a string literal.
+
+[source,java]
+----
+java.lang.String.charAt
+"javafx.scene.control.TabPane$TabClosingPolicy"
+----
 
 [[layout]]
 ## Layout 
