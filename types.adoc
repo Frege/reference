@@ -1,2 +1,5 @@
 = Types
 
+:icons: font
+
+NOTE: this doesn't work.
