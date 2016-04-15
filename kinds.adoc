@@ -21,15 +21,33 @@ A type expression with kind `k`~1~ `-> k`~2~ can be applied to another type expr
 
 We can now derive the kind of type expression `Maybe`. Surely it holds that 
 
+[code,haskell]
 ----
   Int :: *
   Maybe Int :: *
 ----
 
-since we can imagine values 
+since we can imagine values like
+
+[code,haskell]
+----
+5 :: Int
+Just 7 :: Maybe Int
+----
+
+that inhabit those type. From this it follows that `Maybe` is something that can be applied to a type expression of kind `\*` and the resulting type expression also has kind `*`. Therefore:
+
+[code,haskell]
+----
+Maybe :: * -> *
+----
+
+[note]
+Note the spaces between the double colon, the stars and the arrows! 
 
 
-like `5 :: Int` or `Just 7 :: Maybe Int`.
+
+
 
 
 
