@@ -4,5 +4,5 @@
 . link:lexical.adoc[Lexical Syntax]
 . link:syntax.adoc[Expressions]
 . link:kinds.adoc[Kinds]
-. Types
+. link:types.adoc[Types]
 
