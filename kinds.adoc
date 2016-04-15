@@ -3,7 +3,7 @@
 Kinds are the _types of types_ or better _type expressions_. We need them because not every type expression denotes a set of possible values. For example:
 
 ----
- Maybe
+Maybe
 ----
  
 No value actually can have type `Maybe`. Values can be of type `Maybe Int` or `Maybe [String]` and we can even speak of `Maybe a`.
@@ -20,10 +20,8 @@ A type expression with kind `k`~1~ `-> k`~2~ can be applied to another type expr
 We can now derive the kind of type expression `Maybe`. Surely it holds that 
 
 ----
-
-  Int :: *
-  Maybe Int :: *
-
+Int :: *
+Maybe Int :: *
 ----
 
 since we can imagine values like `5 :: Int` or `Just 7 :: Maybe Int`
