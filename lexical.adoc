@@ -251,6 +251,8 @@ Like in Haskell, Frege code can be written using blocks delimitted by curly brac
 In fact, this is the language the parser understands.
 The so-called layout feature allows omission of those braces and semicolons, by inferring their positions based on the indentation of the program text and inserting them as needed before parsing.
 
+NOTE: Syntax diagrams will always show the explicit syntax with braces and semicolons.
+
 Informally stated, the braces and semicolons are inserted as follows. 
 The layout (or ”offside”) rule takes effect whenever the open brace is omitted after the keyword `where`, `let`, `do`, or `of`.
 
