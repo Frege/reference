@@ -290,7 +290,7 @@ module Foo where
 ;baz = bar + x
     where 
       {x = y+2
-      ;y = bar + 5
+      ;y = bar*5
       }
 }
 ----
