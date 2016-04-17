@@ -3,7 +3,7 @@
 . link:README.adoc[Introduction]
 . link:lexical.adoc[Lexical Syntax]
 . link:syntax.adoc[Expressions]
+. Pattern Matching
 . link:kinds.adoc[Kinds]
 . link:types.adoc[Types]
-. Pattern Matching
 
