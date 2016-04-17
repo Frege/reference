@@ -4,7 +4,7 @@ A _module_ is the compilation unit for Frege. It constitutes a name space for th
 
 NOTE: Currently, all items not declared `private` can be accessed from other modules.
 
-When module `A` imports module `B` we say that `A` _depends on_ `B`. The dependency graph must not be cyclic.
+When module `foo.A` imports module `bar.B` we say that `foo.A` _depends on_ `bar.B` and on all modules that `bar.B` depends on. A module must not depend on itself.
 
 A _source file_ defines exactly one module. 
 
@@ -58,6 +58,6 @@ The types after the *`interface`* keyword must all denote native types. The comp
 
 Necessary glue code can be written in curly braces after the *`where`* keyword. The curly braces should be given explicitly, to avoid insertion of semicolons.
 
-The _java code_ is parsed as a sequence of tokens that are simply replicated in code generation. Because of this, avoid the `--` operator, as this would be interpreted as the start of a line comment.
+The _java code_ is parsed as a sequence of <<lexical.adoc#_tokens,tokens>> that are simply replicated in code generation. Because of this, avoid the Java `--` operator, as this would be interpreted as the start of a line comment.
 
-Observe that the types to extend or implement are given as Frege types! This means, appropriate native deinitions must be in scope.
+Observe that the types to extend or implement are given as <<types.adoc,Frege types>>! This means, appropriate native definitions must be in scope.
