@@ -1,3 +1,13 @@
-# Syntax
+Frege, being a functional language, has a rich variety of expressions to offer. Quite some expression forms are _syntactic sugar_ that allow to abbreviate more complex expressions.
 
 ## Terms
+
+[source,bnf]
+----
+variable ::= VARID
+qvarid ::= QUALIFIER? QUALIFIER? variable
+----
+
+A variable denotes the value it is bound to in the given context. Bindings can be established in *pattern matching* or *value binding definitions*.
+
+(to be continued)
