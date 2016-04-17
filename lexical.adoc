@@ -158,7 +158,7 @@ The following characters are separators and have certain syntactic meanings
 
 The last line lists some Unicode symbols that have the same meaning as the 2-character ascii symbols above them. The `∀` has the same meaning as `forall`.
 
-The following are keywords only when the next token is the keyword `native`
+The following are keywords only when the next token is the keyword *`native`*
 
   pure mutable
 
@@ -231,7 +231,7 @@ Namespace and type name must be given as qualifiers, that is, they must be immed
 
 A sequence of names, separated by dots. 
 The last part must be a construtor name. 
-Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs.
+Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs. See also <modules.adoc#_module_names>>.
 
   module org.desperate.programmers.Baz
 
