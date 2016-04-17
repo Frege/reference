@@ -4,10 +4,16 @@ Frege, being a functional language, has a rich variety of expressions to offer. 
 
 [source,bnf]
 ----
+term ::= qvarid
+       | literal
+
 variable ::= VARID
 qvarid ::= QUALIFIER? QUALIFIER? variable
 ----
 
 A variable denotes the value it is bound to in the given context. Bindings can be established in *pattern matching* or *value binding definitions*.
 
+### Literals
+
+See <<lexical.adoc#_literals,Literals>>
 (to be continued)
