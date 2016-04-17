@@ -15,11 +15,11 @@ A _module name_ consists of a number of identifiers separated with dots. The las
 Compilation of a module results in a Java class whose fully qualified name matches the module name.
 
 .Given
-  module com.xyz.Foo where { ... }
+  module org.desparate.programmers.Foo where { ... }
 
 will result in the follwoing Java code:
 
-  package com.xyz;
+  package org.desparate.programmers;
   public class Foo { ... }
 
 It is customary to use lowercase identifiers for the package part, that is, only the last component of a frege module name should start with an uppercase letter.
