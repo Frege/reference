@@ -19,8 +19,15 @@ simpleTyvar ::= VARID
 /* type variable with kind */
 tyvar ::= simpleTyvar
         | '(' simpleTyvar '::' kind ')'
-        | '(' simpleTyvar '≤' typeApp ')'   /* T extends C<...> */
-        | '('  '≤' typeApp ')'              /* ? extends C<...> */
+        | genericTypeVar
+
+/* bounded type variables, needed in native definitions */
+genericTypeVar ::=
+          '(' simpleTyvar '≤' typeApp ')'   /* T extends C<...> */
+
+/* wild card types, needed in native definitions */
+wildCardType:
+          '('  '≤' typeApp ')'              /* ? extends C<...> */
         | '('  '≥' typeApp ')'              /* ? super   C<...> */
 
 /* type kind */
@@ -42,11 +49,28 @@ In type `class` definitions, there is one type variable that stands
 for the instantiated type and scopes over all definitions in
 the where block of the class definition.
 
+In generic type variables, the given type denotes the _upper bound_ for some native type. It must be an instantiation of a native type or a tuple of such types. 
+
+.Given
+ data Enum (e ≤ Enum e) = pure native java.lang.Enum
+ data Comparable t = pure native java.lang.Comparable
+ 
+the type variable
+ 
+ t ≤ (Enum t, Comparable t)
+ 
+will be introduced in corresponding java constructs like
+
+  T extends java.lang.Enum<T> & java.lang.Comparable<T>
+
+In wild card types, the given type denotes the _upper bound_ or the _lower bound_ of some native type. Here, no tuples are allowed since wild card types in Java can name a single type only.
+
 [source,java]
 ----
 /* type term */
 typeTerm ::= tyvar 
           | tycon 
+          | wildCardType               /* for native types */
           | '(' quantifiedType ')'     /* type in parentheses */
           | '(' type (',' type)+ ')'   /* tuple type */
           | '[' type ']'               /* list type */
@@ -80,7 +104,7 @@ quantifiedType ::= ('forall' | '∀') tyvar+ '.' (constrainedType | type)
                       -- a list of b
  forall a b . (a->b) -> [a] -> [b]
                       -- same as before, but explicitly quantified
- (forall t.[t]->[t]) -> [a] -> [b] -> ([a], [b])
+ (∀ t.[t]->[t]) -> [a] -> [b] -> ([a], [b])
  
 Types can mostly be written without explicit quantification. In this case we say the type is implicitly quantified. A `forall` with all free type variables is supplied by the compiler.
 
@@ -90,16 +114,22 @@ However, for higher rank types we need an explicit `forall`. The last type in th
 == Standard Types
 
 |===
-| Frege type | Java type
+| Frege type | Java type | Explanation
 
-| Bool | boolean 
-| Int | int
-| Long | long
-| Integer | java.math.BigInteger
-| Float | float
-| Double | double
-| Char | char
-| String | java.lang.String
-| Regex | java.util.regex.Pattern
+| Bool | boolean |
+| Int | int |
+| Long | long |
+| Integer | java.math.BigInteger |
+| Float | float |
+| Double | double |
+| Char | char |
+| String | java.lang.String |
+| Regex | java.util.regex.Pattern |
+| () | | the unit type with the element ()
+| [a] | | lists
+| (a,b) | | tuples (up to 26 elements)
+| a -> b | | functions
+| Maybe a | | optional value
+| Either a b | | generic sum type
 
 |===
