@@ -7,9 +7,6 @@ Source code is a sequence of Unicode code points. It is *strongly recommended* t
 .Example
 ----
  # use default encoding of the java platform (dangerous!)
- # It is likely that your sorce code will not compile on different platforms,
- # since you probably use some obscure proprietary encoding.
- # (Windows users, I'm looking at you!)
  java -jar fregec.jar -encoding DEFAULT your.fr
  
  # use russian encoding (not tested, for lack of keyboard)
@@ -18,6 +15,11 @@ Source code is a sequence of Unicode code points. It is *strongly recommended* t
  # use UTF-8 (the only sensible decision)
  java -jar fregec.jar  your.fr
 ----
+
+NOTE:  With default encoding, it is likely that your source code will not compile on different platforms if it contains any non-ASCII characters, because those characters are in some obscure proprietary encoding nobody else on the planet does understand. (Windows users, I'm looking at you!).
+
+NOTE: The eclipse plugin for Frege does support UTF-8 only.
+
 
 ## Tokens
 
@@ -44,7 +46,7 @@ Ordinary comments can appear everywhere whitespace can.
 .Block Comment
   {- extends {- to matching -} closing -}
 
-Block comments do nest and can extend over multiple lines. They can be used to separate tokens.
+Block comments *do nest* and can extend over multiple lines. They can be used to separate tokens.
 
 .Two tokens separated by block comment
   v{-separates!-}10     
