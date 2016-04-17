@@ -6,6 +6,6 @@
 . Pattern Matching
 . link:kinds.adoc[Kinds]
 . link:types.adoc[Types]
-. Definitions
+. link:definitions.adoc[Definitions]
 . link:modules.adoc[Modules]
 
