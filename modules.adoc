@@ -8,7 +8,7 @@ When module `foo.A` imports module `bar.B` we say that `foo.A` _depends on_ `bar
 
 A _source file_ defines exactly one module. 
 
-== Module Name
+== Module Names
 
 A _module name_ consists of a number of identifiers separated with dots. The last or only component must start with an uppercase letter.
 
