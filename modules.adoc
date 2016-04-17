@@ -44,7 +44,8 @@ The module name `Prelude` is an abbreviation for `frege.Prelude`
 
 [code,bnf]
 ----
-  module ::= ('module' modulename 'where')? '{' definitions+ '}'
+  module ::= DOCUMENTATION* moduleheader?  '{' definitions+ '}'
+  moduleheader ::= 'module' modulename 'where'
 ----
 
 When the module header is missing, the compiler inserts
@@ -54,7 +55,7 @@ When the module header is missing, the compiler inserts
 module Main where
 ----
 
-When the module header is missing and the first token is not an opening brace, the lexical analyzer will assume layout mode starting at column one.
+When the module header is missing and the first token that follows the optional documentation comments is not an opening brace, the lexical analyzer will assume <<lexical.adoc#_layout,layout>> mode starting at column one.
 
 == Integration with other JVM Languages
 
