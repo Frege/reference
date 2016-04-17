@@ -15,16 +15,16 @@ A _module name_ consists of a number of identifiers separated with dots. The las
 Compilation of a module results in a Java class whose fully qualified name matches the module name.
 
 .Given
-  module org.desparate.programmers.Foo where { ... }
+  module org.desperate.programmers.Foo where { ... }
 
-will result in the follwoing Java code:
+will result in the following Java code:
 
-  package org.desparate.programmers;
+  package org.desperate.programmers;
   public class Foo { ... }
 
-It is customary to use lowercase identifiers for the package part, that is, only the last component of a frege module name should start with an uppercase letter.
+It is customary to use lowercase identifiers for the package part, that is, only the last component of a Frege module name should start with an uppercase letter.
 
-NOTE: Because of the way the JVM works, it is only possible to reference classes in the unnamed package from classes that are also in the unnamed package. It is therefore not recommended to use simple module names.
+NOTE: Because of the way the JVM works, it is only possible to reference classes in the unnamed package from classes that are also in the unnamed package. It is therefore not recommended to use simple module names for library modules.
 
 === Magic Module Names
 
