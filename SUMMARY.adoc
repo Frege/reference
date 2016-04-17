@@ -7,5 +7,5 @@
 . link:kinds.adoc[Kinds]
 . link:types.adoc[Types]
 . Definitions
-. Modules
+. link:modules.adoc[Modules]
 
