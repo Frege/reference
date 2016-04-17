@@ -38,7 +38,7 @@ If the first component of a module name starts with an uppercase letter, that le
   
 === Prelude
 
-The module name `Prelude` is an abbreviation for `frege.Prelude`
+The module name `Prelude` is an abbreviation for `frege.Prelude`.
 
 == Module Definition
 
