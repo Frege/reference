@@ -231,15 +231,7 @@ Namespace and type name must be given as qualifiers, that is, they must be immed
 
 A sequence of names, separated by dots. 
 The last part must be a construtor name. 
-Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs. See also <modules.adoc#_module_names>>.
-
-  module org.desperate.programmers.Baz
-
-If the first component of a multi-component name starts with an uppercase letter, `frege.` will be prepended to the name and the uppercase letter will be lower-cased.
-
-   Data.List      -- same as frege.data.List
-
-This is to make Haskell programmers feel home and to save typing.
+Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs. See also <<modules.adoc#_module_names>>.
 
 ### Native names
 
