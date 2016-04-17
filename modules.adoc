@@ -40,6 +40,22 @@ If the first component of a module name starts with an uppercase letter, that le
 
 The module name `Prelude` is an abbreviation for `frege.Prelude`
 
+== Module Definition
+
+[code,bnf]
+----
+  module ::= ('module' modulename 'where')? '{' definitions+ '}'
+----
+
+When the module header is missing, the compiler inserts
+
+[code,haskell]
+----
+module Main where
+----
+
+When the module header is missing and the first token is not an opening brace, the lexical analyzer will assume layout mode starting at column one.
+
 == Integration with other JVM Languages
 
 It is sometimes desirable that compilation of a Frege module produces a class that extends another JVM class, or implements some interfaces. Usually, this requires also glue java code.
