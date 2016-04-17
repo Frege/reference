@@ -5,4 +5,5 @@
 . link:syntax.adoc[Expressions]
 . link:kinds.adoc[Kinds]
 . link:types.adoc[Types]
+. Pattern Matching
 
