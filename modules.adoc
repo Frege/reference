@@ -1,2 +1,63 @@
 = Modules
 
+A _module_ is the compilation unit for Frege. It constitutes a name space for the enclosed definitions. Compiled modules can be imported from other modules to access the exported types, type classes and functions. 
+
+NOTE: Currently, all items not declared `private` can be accessed from other modules.
+
+When module `A` imports module `B` we say that `A` _depends on_ `B`. The dependency graph must not be cyclic.
+
+A _source file_ defines exactly one module. 
+
+== Module Name
+
+A _module name_ consists of a number of identifiers separated with dots. The last or only component must start with an uppercase letter.
+
+Compilation of a module results in a Java class whose fully qualified name matches the module name.
+
+.Given
+  module com.xyz.Foo where { ... }
+
+will result in the follwoing Java code:
+
+  package com.xyz;
+  public class Foo { ... }
+
+It is customary to use lowercase identifiers for the package part, that is, only the last component of a frege module name should start with an uppercase letter.
+
+NOTE: Because of the way the JVM works, it is only possible to reference classes in the unnamed package from classes that are also in the unnamed package. It is therefore not recommended to use simple module names.
+
+=== Magic Module Names
+
+If the first component of a module name starts with an uppercase letter, that letter gets replaced with it's lowercase associate and the extra component `frege` is prepended to the module name.
+
+.Example
+  import Data.List
+
+.Translation
+  import frege.data.List
+  
+=== Prelude
+
+The module name `Prelude` is an abbreviation for `frege.Prelude`
+
+== Integration with other JVM Languages
+
+It is sometimes desirable that compilation of a Frege module produces a class that extends another JVM class, or implements some interfaces. Usually, this requires also glue java code.
+
+To achieve this, there is the `native module` directive, that can occur as top level definition. There must be at most one such directive per module.
+
+.Syntax
+  module-directive ::= 'native' 'module' 
+         ('type' typeApp)?
+         ('interface' typeApp (',' typeApp)*)?
+         'where' '{' java code '}'
+ 
+The type after the *`type`* keyword must denote a native type. The compiler will create a class that claims to extends this type. (Hence this native type must actually be a Java class.)
+
+The types after the *`interface`* keyword must all denote native types. The compiler will create a class that claims to implement those interfaces.
+
+Necessary glue code can be written in curly braces after the *`where`* keyword. The curly braces should be given explicitly, to avoid insertion of semicolons.
+
+The _java code_ is parsed as a sequence of tokens that are simply replicated in code generation. Because of this, avoid the `--` operator, as this would be interpreted as the start of a line comment.
+
+Observe that the types to extend or implement are given as Frege types! This means, appropriate native deinitions must be in scope.
