@@ -1,8 +1,12 @@
+# Expressions
+
+:syntax-highlighting:
+
 Frege, being a functional language, has a rich variety of expressions to offer. Quite some expression forms are _syntactic sugar_ that allow to abbreviate more complex expressions.
 
 ## Terms
 
-[source,bnf]
+[source,ebnf]
 ----
 term ::= qvarid
        | literal
@@ -16,4 +20,5 @@ A variable denotes the value it is bound to in the given context. Bindings can b
 ### Literals
 
 See <<lexical.adoc#_literals,Literals>>
+
 (to be continued)
