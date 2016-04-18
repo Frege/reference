@@ -1,5 +1,7 @@
 # Lexical Matters
 
+:syntax-highlighting:
+
 ## Source code
 
 Source code is a sequence of Unicode code points. It is *strongly recommended* to keep source code in UTF-8 encoded text files. The compiler supports different encodings through the `-encoding` command line option, though.
@@ -205,7 +207,7 @@ Such a name starts with an uppercase letter, which may be followed by an arbitra
 Namespaces can have the same name as types or type classes. Data constructors can have the same name as namespaces, types or type classes.
 
 .A not so extreme example
-[source]
+[source,haskell]
 ----
   module Foo where
   
