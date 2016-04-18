@@ -1,6 +1,7 @@
 = Kinds
 
 :icons: font
+:syntax-highlighting:
 
 == What are Kinds?
 
@@ -16,9 +17,9 @@ But if `Maybe` is not a type, what is it then? This is exactly what kinds tell u
 We define:
 
 * Type expressions with kind `*` denote actual types, that is, sets of possible values.
-* If k~1~ and k~2~ are kinds, then so is `k`~1~ `-> k`~2~.
-A type expression with kind `k`~1~ `-> k`~2~ can be applied to another type expression of kind `k`~1~ and the resulting type expression has kind `k`~2~
-* The arrow binds right associatively, so that `k1 -> k2 -> k3` means `k1 -> (k2 -> k3)`
+* If k~1~ and k~2~ are kinds, then so is k~1~ -> k~2~.
+A type expression with kind k~1~ -> k~2~ can be applied to another type expression of kind k~1~ and the resulting type expression has kind k~2~
+* The arrow binds right associatively, so that k~1~ -> k~2~ -> k~3~ means k~1~ -> (k~2~ -> k~3~)
 * If `t` is a type expression and `k` is a kind, the construct `t :: k` means "type expression `t` has (or is of) kind `k`
 
 We can now derive the kind of type expression `Maybe`. Surely it holds that 
@@ -37,14 +38,14 @@ since we can imagine values like
 Just 7 :: Maybe Int
 ----
 
-that inhabit those type. From this it follows that `Maybe` is something that can be applied to a type expression of kind `\*` and the resulting type expression also has kind `*`. Therefore:
+that inhabit those types. From this it follows that `Maybe` is something that can be applied to a type expression of kind `\*` and the resulting type expression also has kind `*`. Therefore:
 
 [source,haskell]
 ----
 Maybe :: * -> *
 ----
 
-NOTE: Note the spaces between the double colon, the stars and the arrow! Always include them when you write kinds, because input like `::*->*` would be interpreted as <<lexical.adoc#_operators,operator>>. 
+NOTE: Note the spaces between the double colon, the stars and the arrow! Always include them when you write kinds, because input like `::*->*` would be interpreted as an <<lexical.adoc#_operators,operator>>. 
 
 ## Kind Annotations
 
@@ -71,6 +72,9 @@ It is recommended to annotate type variables where they are introduced:
 
 1. in the left hand side of a `type`, `data` or `newtype` definition
 2. in the list of type variables following `forall`
+3. in a type class definition after the class name
+
+NOTE: In future versions of the compiler, kind annotations will be forbidden except where stated above. 
 
 ## Annotation of Java type variable bounds
 
@@ -95,7 +99,7 @@ Instead, we need to annotate the type variable `e` with its correct bound:
 .Correct:
 [source,haskell]
 ----
-data Enum (e::Enum e) = pure native java.lang.Enum{e} where { ... }
+data Enum (e ≤ Enum e) = pure native java.lang.Enum{e} where { ... }
 ----
 
 When the Java type bound takes the form:
