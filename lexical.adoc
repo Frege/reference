@@ -71,7 +71,9 @@ Looks like a comment at first sight, but is a syntactical element.
 Documentation text may appear
 
 * before the module header, multiple documentation texts may appear.
-* before a (non local) declaration of a function, variable, type class, data type, instance or type class. Syntactically, documentation text is treated here like a definition. This means documentation text must start with the same indentation as any other definition in <<#layout>> mode, and documentation text and the next definition must be separated with semicolon.
+* before a (non local) declaration of a function, variable, type class, data type, instance or type class. Syntactically, documentation text is treated here like a definition. This means 
+** in <<layout>> mode, documentation text must start with the same indentation as any other definition
+** in explicit mode, documentation text and the next definition must be separated with semicolon.
 * immediately before a constructor is introduced, that is, before the constructor name.
 * immediately after the constructor declaration
 * after a field declaration, where it can stand in place of a comma.
@@ -84,11 +86,22 @@ Documentation text may appear
 module Nice where
 
 --- Complex numbers
+{--
+  This is merely a specialised tuple that holds two
+  double numbers.
+  
+  An infix constructor ':+:' is available.
+-}
 data Complex = 
-    --- The constructor is also named @Complex@
-    Complex { re :: Double        --- real part
-              im :: Double        --- imaginary part }
+    {-- The constructor is also named @Complex@, 
+        I simply had no better idea. Sorry. -}
+    Complex { 
+              !re :: Double        --- real part
+              !im :: Double        --- imaginary part 
+            }
 
+--- construct a 'Complex' number
+a :+: b = Complex a b
 ----
 
 NOTE: Let bound definitions can not have documentation, as they are not accessible from outside the module.
