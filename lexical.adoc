@@ -53,7 +53,11 @@ Block comments *do nest* and can extend over multiple lines. They can be used to
 .Two tokens separated by block comment
   v{-separates!-}10     
 
-.Documentation Comment
+### Documentation Text
+
+Looks like a comment at first sight, but is a syntactical element.
+
+.Documentation Text
 [source,haskell]
 ----
   {--
@@ -64,18 +68,36 @@ Block comments *do nest* and can extend over multiple lines. They can be used to
   --- this is a single paragraph of documentation
 ----  
 
-Documentation comments may appear
+Documentation text may appear
 
-* before a (non local) declaration of a function, variable, type class, data type, instance or type class
-* immediately before a constructor is introduced
+* before the module header, multiple documentation texts may appear.
+* before a (non local) declaration of a function, variable, type class, data type, instance or type class. Syntactically, documentation text is treated here like a definition. This means documentation text must start with the same indentation as any other definition in <<#layout>> mode, and documentation text and the next definition must be separated with semicolon.
+* immediately before a constructor is introduced, that is, before the constructor name.
 * immediately after the constructor declaration
-* after a field declaration
+* after a field declaration, where it can stand in place of a comma.
 
-Multiple adjacent documentation comments are joined with a paragraph break inbetween. The documentation text extracted from a (sequence of) documentationn comments is attached to the documented item. 
+.Example
+[source,haskell]
+----
+--- This is a nice module.
+--- Have fun!
+module Nice where
+
+--- Complex numbers
+data Complex = 
+    --- The constructor is also named @Complex@
+    Complex { re :: Double        --- real part
+              im :: Double        --- imaginary part }
+
+----
+
+NOTE: Let bound definitions can not have documentation, as they are not accessible from outside the module.
+
+Multiple adjacent documentation texts are joined with a paragraph break inbetween. The documentation extracted from a sequence of documentationn texts is attached to the documented item.
 
 You write documentation with an easy <<markup>> language.
 
-You should write documentation comments because
+You should write documentation texts because
 
 * a module documentation can be generated from your compiled module
 * the eclipse plugin can show the documentation of your functions on mouse hover and in code completion suggestions when your module is imported.
@@ -302,7 +324,7 @@ module Foo where
 ----
 
 [[markup]]
-## Documentation Comment Markup
+## Documentation Text Markup
 
 The following markup is supported by the documentation tool and the eclipse plugin:
 
