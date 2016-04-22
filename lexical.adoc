@@ -235,7 +235,7 @@ Namespace and type name must be given as qualifiers, that is, they must be immed
 
 A sequence of names, separated by dots. 
 The last part must be a construtor name. 
-Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs. See also <<modules.adoc#_module_names>>.
+Since this will be the fully qualified name of the Java class that is generated for this module, it is expected that the name follows Java customs. See also <<modules.adoc#_module_names,Module Names>>.
 
 ### Native names
 
