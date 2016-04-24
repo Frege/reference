@@ -292,11 +292,12 @@ The so-called layout feature allows omission of those braces and semicolons, by 
 
 NOTE: Syntax diagrams will always show the explicit syntax with braces and semicolons.
 
-Informally stated, the braces and semicolons are inserted as follows. 
+Informally stated, the braces and semicolons are inserted as follows.
+
 The layout (or ”offside”) rule takes effect whenever the open brace is omitted after the keyword `where`, `let`, `do`, or `of`.
 
 When this happens, the indentation of the next lexeme (whether or not on a new line) is remembered and the omitted open brace is inserted 
-(the whitespace preceding the lexeme may include comments). If the next lexeme is not more indented than the current indentation level, an additional '}' is inserted.
+(the whitespace preceding the lexeme may include comments). If the next lexeme is not more indented than the current indentation level, an additional closing brace is inserted.
 
 For each subsequent line, 
 if it contains only whitespace or is indented more, 
